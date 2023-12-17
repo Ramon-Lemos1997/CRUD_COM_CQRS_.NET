@@ -6,9 +6,7 @@ namespace Infra.Data.Data.Repositories
 {
     public class UserContractRepository : Repository<UserContract>, IUserContractRepository
     {
-        public UserContractRepository(ApplicationDbContext context)
-            : base(context)
-        { }
+        public UserContractRepository(ApplicationDbContext context) : base(context) { }
 
         /// <summary>
         /// Obtém uma lista de contratos de usuário por ID de usuário.

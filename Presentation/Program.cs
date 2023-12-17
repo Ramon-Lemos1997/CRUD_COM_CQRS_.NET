@@ -23,6 +23,8 @@ builder.Services.AddMediatR(options => options.RegisterServicesFromAssembly(type
 //injenções de dependência
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserContractRepository, UserContractRepository>();
 
 var app = builder.Build();
 

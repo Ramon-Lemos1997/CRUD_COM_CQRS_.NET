@@ -10,12 +10,13 @@ namespace Infra.Data.Data.Repositories
     {
         private readonly ApplicationDbContext _context;
         private IDbContextTransaction _transaction;
-
-        public UnitOfWork(ApplicationDbContext context)
+        private readonly IUserRepository _userRepository;
+        private readonly IUserContractRepository _userContractRepository;
+        public UnitOfWork(ApplicationDbContext context, IUserRepository userRepository, IUserContractRepository userContractRepository)
         {
             _context = context;
-            UserRepository = new UserRepository(_context);
-            UserContractRepository = new UserContractRepository(_context);
+            _userRepository = userRepository;
+            _userContractRepository = userContractRepository;
         }
 
 
@@ -25,12 +26,12 @@ namespace Infra.Data.Data.Repositories
         /// <summary>
         /// Repositório para manipulação de entidades do tipo User.
         /// </summary>
-        public IUserRepository UserRepository { get; private set; }
+        public IUserRepository UserRepository => _userRepository;
 
         /// <summary>
         /// Repositório para manipulação de entidades do tipo UserContract.
         /// </summary>
-        public IUserContractRepository UserContractRepository { get; private set; }
+        public IUserContractRepository UserContractRepository => _userContractRepository;
 
         /// <summary>
         /// Salva todas as mudanças realizadas no contexto do banco de dados.
