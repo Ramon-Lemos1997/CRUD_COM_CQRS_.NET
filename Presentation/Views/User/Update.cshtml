@@ -1,0 +1,55 @@
+﻿﻿@using Domain.Enuns
+@model Domain.Models.UserModel
+
+<div>
+    <form class="p-2 mx-auto" asp-controller="User" asp-action="Update" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-light text-danger border border-danger rounded mt-2" role="alert"></div>
+        <h1 class="text-center pt-5">Detalhes da usuário</h1>
+
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="container border rounded">
+            <div class="row mt-3">
+                <div class="col">
+                    <label class="form-label" asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label class="form-label" asp-for="BusinessName"></label>
+                    <input asp-for="BusinessName" class="form-control" required />
+                    <span asp-validation-for="BusinessName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <label class="form-label" asp-for="CnpjNumber"></label>
+                    <input asp-for="CnpjNumber" class="form-control" required />
+                    <span asp-validation-for="CnpjNumber" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label class="form-label" asp-for="Role"></label>
+                    <select asp-for="Role" class="form-control" required>
+                        <option value="">Selecione um cargo</option>
+                        @foreach (var role in Enum.GetValues(typeof(RoleEnum)))
+                        {
+                            <option value="@role">@role</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mt-3 ">
+                <div class="col">
+                    <label class="form-label" asp-for="WhatsApp"></label>
+                    <input asp-for="WhatsApp" class="form-control" />
+                    <span asp-validation-for="WhatsApp" class="text-danger"></span>
+                </div>
+            </div>
+
+            <a asp-controller="User" asp-action="Index" class="btn  btn-primary mt-3 m-2">Voltar</a>
+            <button type="submit" class="btn  btn-success mt-3 m-2">Atualizar dados</button>
+        </div>
+    </form>
+</div>
